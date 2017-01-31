@@ -130,7 +130,7 @@ var TopMenu = React.createClass({
                     <a style={buttonStyle} href="javascript:" onClick={this.toggleExpanded} className={'nav-toggle' + (this.state.expanded ? ' active' : '')}>Menu</a>
                     <nav className="nav-collapse nav-compact">
                         <div className="mask" style={{height: this.getTweeningValue('maskHeight')}}>
-                            <ul ref="anchor">
+                            <ul ref={(navList) => { this.navList = navList; }}>
                                 {items}
                             </ul>
                         </div>
