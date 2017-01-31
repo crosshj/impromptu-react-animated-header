@@ -1,4 +1,5 @@
 var React      = require('react');
+var ReactDom = require('react-dom');
 var tweenState = require('react-tween-state');
 
 var Item = React.createClass({
@@ -32,8 +33,8 @@ var TopMenu = React.createClass({
         };
     },
     toggleExpanded: function() {
-        var expanded = !this.state.expanded,
-            height = this.refs.anchor.getDOMNode().clientHeight;
+        var expanded = !this.state.expanded;
+        var height = this.navList.clientHeight;
         if (true === this.props.animate) {
             this.setState({expanded: expanded});
             this.tweenState('maskHeight', {
@@ -116,7 +117,7 @@ var TopMenu = React.createClass({
                 <header className={animClass ? (cssClass + ' ' + animClass) : cssClass}>
                     {brand}
                     <nav className={'nav-collapse nav-full' + ('right' === this.props.align ? ' nav-right' : '')}>
-                        <ul ref="anchor">
+                        <ul ref={(navList) => { this.navList = navList; }}>
                             {items}
                         </ul>
                     </nav>
